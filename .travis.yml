@@ -64,7 +64,7 @@ before_deploy:
 
   # Verification
   - jarsigner -verify app-release-unsigned.apk
-  - "${ANDROID_HOME}/build-tools/24.0.2/zipalign -v 4 app-release-unsigned.apk AppRelease.apk"
+  - "${ANDROID_HOME}/build-tools/29.0.2/zipalign -v 4 app-release-unsigned.apk AppRelease.apk"
 
 deploy:
   provider: releases
