@@ -19,9 +19,11 @@ deploy:
   provider: releases
   skip_cleanup: true
   overwrite: true
-  api_key: $github_token
+  api-key: $github_token
   file_glob: true
-  file: ${PWD}:/build/matdesign/app/build/outputs/apk/release/*
+  file: $TRAVIS_BUILD_DIR/app/build/outputs/apk/debug/app-debug.apk
   on:
     repo: elsadeny/matdesign
     tags: true
+after_deploy:
+    -rm -rf $TRAVIS_BUILD_DIR/app/build/outputs
