@@ -12,3 +12,13 @@ before_install:
 
 script:
     - docker run --rm -v ${PWD}:/build circleci/android:api-28-ndk bash -c "cd /build; ./gradlew assembleDebug check"
+deploy:
+  provider: releases
+  skip_cleanup: true
+  overwrite: true
+  api_key:$github_token
+  file_glob: true
+  file: /home/travis/build/matdesign/app/build/outputs/apk/release/*
+  on:
+    repo: elsadeny/matdesign
+    tags: true
