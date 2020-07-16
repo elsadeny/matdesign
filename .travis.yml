@@ -14,14 +14,14 @@ before_install:
     - chmod -R a+wrx .
 
 script:
-    - docker run --rm -v ${PWD}:/build circleci/android:api-29-ndk bash -c "cd /build; ./gradlew assembleDebug check"
+    - docker run --rm -v ${PWD}:/build circleci/android:api-29-ndk bash -c "cd /build; ./gradlew assembleRelease check"
 deploy:
   provider: releases
   skip_cleanup: true
   overwrite: true
   api-key: $github_token
   file_glob: true
-  file: $TRAVIS_BUILD_DIR/app/build/outputs/apk/debug/app-debug.apk
+  file: $TRAVIS_BUILD_DIR/app/build/outputs/apk/*
   on:
     repo: elsadeny/matdesign
     tags: true
